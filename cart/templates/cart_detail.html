@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load cart_filters %}
+{% load utility_filters %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 cart">
+    <h1>Your Cart</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product, quantity in cart.items %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>${{ product.price }}</td>
+                <td>{{ quantity }}</td>
+                <td>${{ product.price|multiply:quantity }}</td>
+                <td>
+
+
+                    <form method="post" action="{% url 'remove_from_cart' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

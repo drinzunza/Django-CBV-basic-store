@@ -1,0 +1,7 @@
+<a href="{% url 'like_product' product.id %}">
+    {% if product.liked %}
+    <i class="fa-solid fa-heart"></i>
+    {% else %}
+    <i class="fa-regular fa-heart"></i>
+    {% endif %}
+</a>

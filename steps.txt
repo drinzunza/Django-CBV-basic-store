@@ -1,0 +1,12 @@
+pip install django-crispy-forms
+pip install crispy-bootstrap5
+
+
+
+
+
+
+
+
+ssl issue:
+brew update && brew upgrade openssl

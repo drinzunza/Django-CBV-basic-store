@@ -23,7 +23,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = ['localhost', 'cvbstore-baaf7e15da86.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'cvbstore-baaf7e15da86.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -132,6 +132,7 @@ ADMIN_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'  # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = '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'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False

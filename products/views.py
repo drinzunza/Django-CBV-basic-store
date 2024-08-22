@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 
 def set_liked_by_user(products, user):
     if not isinstance(products, list):
@@ -38,6 +39,18 @@ class ProductListView(ListView):
         return context
     
 
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'category_list.html'
+    context_object_name = 'categories'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_images'] = {
+            category: Product.objects.filter(category=category).first().image.url if Product.objects.filter(category=category).exists() else None
+            for category in context['categories']
+        }
+        return context
 
 class ProductDetailView(DetailView):
     model = Product
@@ -47,8 +60,6 @@ class ProductDetailView(DetailView):
         set_liked_by_user([context['object']], self.request.user)
 
         return context
-
-    
 
 
 class LikeProductView(LoginRequiredMixin, View):

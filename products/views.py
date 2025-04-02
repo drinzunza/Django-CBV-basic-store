@@ -44,13 +44,6 @@ class CategoryListView(ListView):
     template_name = 'category_list.html'
     context_object_name = 'categories'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category_images'] = {
-            category: Product.objects.filter(category=category).first().image.url if Product.objects.filter(category=category).exists() else None
-            for category in context['categories']
-        }
-        return context
 
 class ProductDetailView(DetailView):
     model = Product

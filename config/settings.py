@@ -132,7 +132,7 @@ ADMIN_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'  # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
